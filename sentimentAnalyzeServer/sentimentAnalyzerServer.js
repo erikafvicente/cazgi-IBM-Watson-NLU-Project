@@ -12,11 +12,10 @@ app.use(cors_app());
 /*Uncomment the following lines to loan the environment 
 variables that you set up in the .env file*/
 
-// const dotenv = require('dotenv');
-// dotenv.config();
-
-// const api_key = process.env.API_KEY;
-// const api_url = process.env.API_URL;
+const dotenv = require('dotenv');
+dotenv.config();
+const api_key = process.env.API_KEY;
+const api_url = process.env.API_URL;
 
 function getNLUInstance() {
     const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
@@ -36,7 +35,7 @@ function getNLUInstance() {
 //The default endpoint for the webserver
 app.get("/",(req,res)=>{
     res.render('index.html');
-  });
+});
 
 //The endpoint for the webserver ending with /url/emotion
 app.get("/url/emotion", (req,res) => {
@@ -148,4 +147,3 @@ app.get("/text/sentiment", (req,res) => {
 let server = app.listen(8080, () => {
     console.log('Listening', server.address().port)
 })
-
